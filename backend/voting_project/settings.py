@@ -102,7 +102,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",  # Vite dev server
     "http://localhost:3000",  # React dev server (alternative)
     os.environ.get('FRONTEND_URL', 'http://localhost:3000'),  # Render will set this
-
+    "https://voting-backend-ttjx.onrender.com"
 ]
 
 
