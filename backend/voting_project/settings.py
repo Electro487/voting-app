@@ -77,17 +77,25 @@ WSGI_APPLICATION = 'voting_project.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'voting_db',
-        'USER': 'postgres',
-        'PASSWORD': 'Superpassword387!!',  # CHANGE THIS TO YOUR POSTGRES PASSWORD
-        'HOST': 'localhost',
-        'PORT': '5432',
+if os.environ.get('DATABASE_URL'):
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=os.environ.get('DATABASE_URL'),
+            conn_max_age=600,
+            conn_health_checks=True,
+        )
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'voting_db',
+            'USER': 'postgres',
+            'PASSWORD': 'Superpassword387!!',  # CHANGE THIS TO YOUR POSTGRES PASSWORD
+            'HOST': 'localhost',
+            'PORT': '5432',
+        }
+    }
 
 # CORS settings for frontend
 CORS_ALLOWED_ORIGINS = [
