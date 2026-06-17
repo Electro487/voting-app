@@ -3,7 +3,7 @@
  * This separates API logic from components for cleaner code
  */
 
-const API_BASE_URL = 'http://localhost:8000/api';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
 
 // Get vote counts from the backend
 export const getVoteCounts = async () => {
